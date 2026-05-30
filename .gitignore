@@ -1,0 +1,51 @@
+todo/
+
+bin/
+
+# Mac OS X clutter
+*.DS_Store
+
+# Windows clutter
+Thumbs.db
+
+# Ignore gradle files
+.gradle/
+.build/
+build/
+.nb-gradle/
+
+local.properties
+gradle.properties
+
+# Visual Studio Code
+.vscode/
+
+# Intellij IDEs
+.idea/
+# Intellij IDEA (see https://intellij-support.jetbrains.com/entries/23393067)
+.idea/workspace.xml
+.idea/tasks.xml
+
+# ignore XD Creator IDE
+*.user
+*.user.*
+git_*.cmd
+
+# ignore backups of qt generated files
+*.autosave
+*.xd_backup
+"*.properties~"
+
+# Compiled Object files, Static and Dynamic libs (Shared Objects)
+*.o
+*.a
+*.so
+
+# Architecture specific extensions/prefixes
+
+*.exe
+*.test
+*.prof
+*_buildinfo.txt
+*.properties~
+*.iml

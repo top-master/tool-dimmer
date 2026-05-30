@@ -1,0 +1,2 @@
+
+SKIP_APP_GLOBAL_CONF = true
