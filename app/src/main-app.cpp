@@ -32,6 +32,14 @@
 //
 //////////////////////////////////////////////////////////////////////////////
 
+#include <QtCore/qglobal.h>
+
+#ifndef QT_HAS_XD
+#  error "dimmer requires the XD framework (https://github.com/top-master/XD); plain Qt is not supported. Point qmake at XD's bin/qmake.exe or set XD_ROOT before running build.sh."
+#endif
+
+#include <QApplication>
+
 #include <Windows.h>
 #include <Commctrl.h>
 #include <string>
@@ -76,7 +84,10 @@ static void updateOverlays(HINSTANCE instance) {
     }
 }
 
-int CALLBACK wWinMain(HINSTANCE instance, HINSTANCE prev, LPWSTR args, int showType) {
+int main(int argc, char *argv[]) {
+    QApplication app(argc, argv);
+    HINSTANCE instance = ::GetModuleHandleW(nullptr);
+
     InitCommonControlsEx(nullptr);
 
     dimmer::loadConfig();
@@ -96,17 +107,13 @@ int CALLBACK wWinMain(HINSTANCE instance, HINSTANCE prev, LPWSTR args, int showT
         }
     });
 
-    MSG msg = {};
-    while (GetMessage(&msg, nullptr, 0, 0)) {
-        TranslateMessage(&msg);
-        DispatchMessage(&msg);
-    }
+    int rc = app.exec();
 
     dimmer::saveConfig();
 
     monitors.clear();
     overlays.clear();
 
-    return 0;
+    return rc;
 }
 
